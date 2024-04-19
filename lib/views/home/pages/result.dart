@@ -1,8 +1,7 @@
 import 'package:bmi_calculator_app/views/home/widgets/custom_result_container.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../../config/provider.dart';
+import '../../../config/constants.dart';
 import '../widgets/custom_button.dart';
 
 class ResultPage extends StatelessWidget {
@@ -11,8 +10,6 @@ class ResultPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
-    var vm = Provider.of<BMIProvider>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -59,7 +56,7 @@ class ResultPage extends StatelessWidget {
             const SizedBox(height: 30),
             Center(
               child: Text(
-                '(${vm.bmiCategory})',
+                '(${Constants.vm.bmiCategory})',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                     fontSize: 20,
@@ -71,7 +68,7 @@ class ResultPage extends StatelessWidget {
             const RecordInfo(),
             const SizedBox(height: 18),
             Container(
-              height: mediaQuery.width * .52,
+              height: Constants.mediaQuery.width * .52,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
@@ -83,7 +80,6 @@ class ResultPage extends StatelessWidget {
                   children: [
                     const TextSpan(
                       text: 'A BMI of ',
-                      //A BMI of that your weight is in the
                       style: TextStyle(
                         fontSize: 17,
                         fontFamily: 'Inder',
@@ -92,7 +88,7 @@ class ResultPage extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: vm.bmiCategoryRange(),
+                      text: Constants.vm.bmiCategoryRange(),
                       style: const TextStyle(
                         fontFamily: 'Inder',
                         color: Color(0xff2566cf),
@@ -110,7 +106,7 @@ class ResultPage extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: vm.bmiCategory,
+                      text: Constants.vm.bmiCategory,
                       style: const TextStyle(
                         fontFamily: 'Inder',
                         color: Color(0xff2566cf),
@@ -151,12 +147,9 @@ class RecordInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
-    var vm = Provider.of<BMIProvider>(context);
-
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      height: mediaQuery.width * .28,
+      height: Constants.mediaQuery.width * .28,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: Colors.grey),
@@ -168,14 +161,14 @@ class RecordInfo extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                vm.isSelected ? Icons.man : Icons.woman,
+                Constants.vm.isSelected ? Icons.man : Icons.woman,
                 size: 48,
               ),
               const SizedBox(
                 height: 10,
               ),
               Text(
-                vm.isSelected ? 'Male' : 'Female',
+                Constants.vm.isSelected ? 'Male' : 'Female',
                 style: const TextStyle(
                     fontSize: 20,
                     fontFamily: 'inder',
@@ -188,7 +181,7 @@ class RecordInfo extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                vm.age.toString(),
+                Constants.vm.age.toString(),
                 style: const TextStyle(
                     fontSize: 30,
                     fontFamily: 'Capriola',
@@ -212,7 +205,7 @@ class RecordInfo extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                (vm.height.toInt()).toString(),
+                (Constants.vm.height.toInt()).toString(),
                 style: const TextStyle(
                     fontSize: 30,
                     fontFamily: 'Capriola',
@@ -236,7 +229,7 @@ class RecordInfo extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                (vm.weight.toInt()).toString(),
+                (Constants.vm.weight.toInt()).toString(),
                 style: const TextStyle(
                     fontSize: 30,
                     fontFamily: 'Capriola',
