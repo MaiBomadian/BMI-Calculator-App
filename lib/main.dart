@@ -3,11 +3,12 @@ import 'package:bmi_calculator_app/views/home/pages/home.dart';
 import 'package:bmi_calculator_app/views/home/pages/result.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() {
-  runApp(ChangeNotifierProvider(create: (context) => BMIProvider(),
-  child: const BmiApp()));
+  runApp(ChangeNotifierProvider(
+      create: (context) => BMIProvider(), child: const BmiApp()));
 }
 
 class BmiApp extends StatelessWidget {
@@ -22,7 +23,6 @@ class BmiApp extends StatelessWidget {
       routes: {
         HomePage.routeName: (context) => const HomePage(),
         ResultPage.routeName: (context) => const ResultPage(),
-
       },
     );
   }

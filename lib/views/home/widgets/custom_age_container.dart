@@ -1,7 +1,6 @@
+import 'package:bmi_calculator_app/config/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../../config/provider.dart';
 
 class CustomAgeContainer extends StatefulWidget {
   const CustomAgeContainer({
@@ -15,8 +14,6 @@ class CustomAgeContainer extends StatefulWidget {
 class _CustomAgeContainerState extends State<CustomAgeContainer> {
   @override
   Widget build(BuildContext context) {
-    var vm = Provider.of<BMIProvider>(context);
-    var mediaQuery = MediaQuery.of(context).size;
 
     return Column(
       children: [
@@ -32,7 +29,7 @@ class _CustomAgeContainerState extends State<CustomAgeContainer> {
           height: 20,
         ),
         Container(
-          height: mediaQuery.width*.2,
+          height: Constants.mediaQuery.width*.2,
           decoration: BoxDecoration(
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(16),
@@ -43,8 +40,8 @@ class _CustomAgeContainerState extends State<CustomAgeContainer> {
             children: [
               IconButton(
                 onPressed: () {
-                  if (vm.age > 0) {
-                    vm.age--;
+                  if (Constants.vm.age > 0) {
+                    Constants.vm.age--;
                   }
                   setState(() {});
                 },
@@ -55,7 +52,7 @@ class _CustomAgeContainerState extends State<CustomAgeContainer> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  vm.age.toString(),
+                  Constants.vm.age.toString(),
                   style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -66,7 +63,7 @@ class _CustomAgeContainerState extends State<CustomAgeContainer> {
               IconButton(
                 icon: const Icon(Icons.add),
                 onPressed: () {
-                  vm.age++;
+                  Constants.vm.age++;
                   setState(() {});
                 },
               ),

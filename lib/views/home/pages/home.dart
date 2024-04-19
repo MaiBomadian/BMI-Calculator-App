@@ -1,11 +1,10 @@
+import 'package:bmi_calculator_app/config/constants.dart';
 import 'package:bmi_calculator_app/views/home/pages/result.dart';
 import 'package:bmi_calculator_app/views/home/widgets/custom_button.dart';
 import 'package:bmi_calculator_app/views/home/widgets/custom_gender_container.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
-import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
-import '../../../config/provider.dart';
 import '../widgets/custom_age_container.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,9 +20,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var vm = Provider.of<BMIProvider>(context);
-    var mediaQuery = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
@@ -108,18 +104,20 @@ class _HomePageState extends State<HomePage> {
               shouldAlwaysShowTooltip: true,
               min: 0.0,
               max: 200.0,
-              value: vm.height,
+              value: Constants.vm.height,
               interval: 20,
               showTicks: true,
               showLabels: true,
               enableTooltip: false,
               onChanged: (value) {
                 setState(() {
-                  vm.height = value;
+                  Constants.vm.height = value;
                 });
               },
             ),
-            const SizedBox(height: 26,),
+            const SizedBox(
+              height: 26,
+            ),
             const CustomAgeContainer(),
             const SizedBox(
               height: 26,
@@ -134,7 +132,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(
-              height: mediaQuery.width * .3,
+              height: Constants.mediaQuery.width * .3,
               child: Center(
                 child: NumberPicker(
                   selectedTextStyle: const TextStyle(
@@ -155,12 +153,12 @@ class _HomePageState extends State<HomePage> {
                     fontFamily: 'Capriola',
                   ),
                   axis: Axis.horizontal,
-                  value: vm.weight.toInt(),
+                  value: Constants.vm.weight.toInt(),
                   minValue: 0,
                   maxValue: 200,
                   onChanged: (value) {
                     setState(() {
-                      vm.weight = value.toDouble();
+                      Constants.vm.weight = value.toDouble();
                     });
                   },
                 ),
@@ -170,9 +168,10 @@ class _HomePageState extends State<HomePage> {
             CustomElevatedButton(
                 textButton: 'CALCULATE BMI',
                 onPressed: () {
-                  vm.calculateBMI(vm.weight, vm.height);
-                  vm.determineBMICategory();
-                  vm.selectGender(isSelected);
+                  Constants.vm
+                      .calculateBMI(Constants.vm.weight, Constants.vm.height);
+                  Constants.vm.determineBMICategory();
+                  Constants.vm.selectGender(isSelected);
                   Navigator.of(context).pushNamed(ResultPage.routeName);
                 }),
           ],
